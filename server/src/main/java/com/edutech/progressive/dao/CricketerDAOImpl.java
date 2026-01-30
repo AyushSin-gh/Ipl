@@ -10,7 +10,7 @@ public class CricketerDAOImpl implements CricketerDAO{
    @Override
    public int addCricketer(Cricketer cricketer) {
        list.add(cricketer);
-       return 1;
+       return -1;
    }
    @Override
    public Cricketer getCricketerById(int cricketerId) {
