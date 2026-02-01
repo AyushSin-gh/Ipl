@@ -7,34 +7,34 @@ import java.util.List;
 import com.edutech.progressive.entity.Cricketer;
 import com.edutech.progressive.service.CricketerService;
 
-public class CricketerServiceImplArraylist implements CricketerService {
-    private List<Cricketer> list=new ArrayList<>();
-    @Override
-    public Integer addCricketer(Cricketer cricketer) {
-        // TODO Auto-generated method stub
-        list.add(cricketer);
-        return list.size();
+import java.sql.SQLException;
+import java.util.List;
+
+public interface CricketerService {
+
+    List<Cricketer> getAllCricketers() throws SQLException;
+
+    Integer addCricketer(Cricketer cricketer) throws SQLException;
+
+    List<Cricketer> getAllCricketersSortedByExperience() throws SQLException;
+
+    default void emptyArrayList() {
+        // placeholder
     }
 
-    @Override
-    public void emptyArrayList() {
-        // TODO Auto-generated method stub
-        //CricketerService.super.emptyArrayList();
-        list.clear();
+    default void updateCricketer(Cricketer cricketer) throws SQLException {
+        // should not be implemented in ArrayList service
     }
 
-    @Override
-    public List<Cricketer> getAllCricketers() {
-        // TODO Auto-generated method stub
-        return new ArrayList<>(list);
+    default void deleteCricketer(int cricketerId) throws SQLException {
+        // should not be implemented in ArrayList service
     }
 
-    @Override
-    public List<Cricketer> getAllCricketersSortedByExperience() {
-        // TODO Auto-generated method stub
-        List<Cricketer> sorted=new ArrayList<>(list);
-        Collections.sort(sorted);
-        return sorted;
+    default Cricketer getCricketerById(int cricketerId) throws SQLException {
+        return null;
     }
 
+    default List<Cricketer> getCricketersByTeam(int teamId) {
+        return null;
+    }
 }
