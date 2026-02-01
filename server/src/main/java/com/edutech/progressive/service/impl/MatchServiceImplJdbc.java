@@ -6,36 +6,30 @@ import java.util.List;
 import com.edutech.progressive.entity.Match;
 import com.edutech.progressive.service.MatchService;
 
-public class MatchServiceImplJdbc  implements MatchService{
+import java.sql.SQLException;
+import java.util.List;
 
-    @Override
-    public Integer addMatch(Match match) {
-        // TODO Auto-generated method stub
-        return -1;
+public class MatchServiceImplJdbc {
+
+    private MatchDAO matchDAO = new MatchDAOImpl();
+
+    public List<Match> getAllMatches() throws SQLException {
+        return matchDAO.getAllMatches();
     }
 
-    @Override
-    public void deleteMatch(int matchId) {
-        // TODO Auto-generated method stub
-        
+    public Match getMatchById(int id) throws SQLException {
+        return matchDAO.getMatchById(id);
     }
 
-    @Override
-    public List<Match> getAllMatches() {
-        // TODO Auto-generated method stub
-        return new ArrayList<>();
+    public Integer addMatch(Match match) throws SQLException {
+        return matchDAO.addMatch(match);
     }
 
-    @Override
-    public Match getMatchById(int matchId) {
-        // TODO Auto-generated method stub
-        return null;
+    public void updateMatch(Match match) throws SQLException {
+        matchDAO.updateMatch(match);
     }
 
-    @Override
-    public void updateMatch(Match match) {
-        // TODO Auto-generated method stub
-        
+    public void deleteMatch(int id) throws SQLException {
+        matchDAO.deleteMatch(id);
     }
-
 }
