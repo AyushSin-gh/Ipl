@@ -8,44 +8,42 @@ import com.edutech.progressive.dao.TeamDAOImpl;
 import com.edutech.progressive.entity.Team;
 import com.edutech.progressive.service.TeamService;
 
-public class TeamServiceImplJdbc  implements TeamService{
-    private TeamDAO teamDAO=new TeamDAOImpl();
+import java.sql.SQLException;
+import java.util.List;
+
+public class TeamServiceImplJdbc implements TeamService {
+
+    private TeamDAO teamDAO = new TeamDAOImpl();
 
     @Override
-    public int addTeam(Team team) {
-        // TODO Auto-generated method stub
-        return -1;
+    public List<Team> getAllTeams() throws SQLException {
+        return teamDAO.getAllTeams();
     }
 
     @Override
-    public void deleteTeam(int teamId) {
-        // TODO Auto-generated method stub
-        //TeamService.super.deleteTeam(teamId);
+    public int addTeam(Team team) throws SQLException {
+        return teamDAO.addTeam(team);
     }
 
     @Override
-    public List<Team> getAllTeams() {
-        // TODO Auto-generated method stub
-        return new ArrayList<>();
+    public List<Team> getAllTeamsSortedByName() throws SQLException {
+        List<Team> teams = teamDAO.getAllTeams();
+        teams.sort((t1, t2) -> t1.getTeamName().compareToIgnoreCase(t2.getTeamName()));
+        return teams;
     }
 
     @Override
-    public List<Team> getAllTeamsSortedByName() {
-        // TODO Auto-generated method stub
-        return new ArrayList<>();
+    public Team getTeamById(int teamId) throws SQLException {
+        return teamDAO.getTeamById(teamId);
     }
 
     @Override
-    public Team getTeamById(int teamId) {
-        // TODO Auto-generated method stub
-        return null;
+    public void updateTeam(Team team) throws SQLException {
+        teamDAO.updateTeam(team);
     }
 
     @Override
-    public void updateTeam(Team team) {
-        // TODO Auto-generated method stub
-        //TeamService.super.updateTeam(team);
-    };
-    
-
+    public void deleteTeam(int teamId) throws SQLException {
+        teamDAO.deleteTeam(teamId);
+    }
 }
